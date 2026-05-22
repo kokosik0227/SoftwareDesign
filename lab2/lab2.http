@@ -1,0 +1,37 @@
+@hostname = localhost
+@port = 5230
+@host = http://{{hostname}}:{{port}}
+
+### 1. Create User Alice
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACA"
+}
+
+### 2. Create User Bob
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Bob",
+  "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACB"
+}
+
+### 3. Create Conversation
+POST {{host}}/api/conversations
+
+### 4. Send Encrypted Message (Paste real IDs from responses here)
+POST {{host}}/api/messages
+Content-Type: application/json
+
+{
+  "conversationId": "a30a596c-fb6a-44df-80b0-c505214026d1",
+  "senderId": "267cf824-0a97-492e-a710-75f5625516bb",
+  "ciphertext": "0xABC123ENCRYPTED_DATA_STREAM"
+}
+
+### 5. Get Message History (Paste real conversation ID)
+GET {{host}}/api/conversations/a30a596c-fb6a-44df-80b0-c505214026d1/messages
